@@ -16,6 +16,7 @@ jobs:
       - name: Install dependencies and Build 
         run: mvn clean install
   test:  
+    needs: compileAndbuild
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -28,6 +29,7 @@ jobs:
       - name: Test 
         run: mvn test  
   deploy:
+    needs: [compileAndbuild]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
