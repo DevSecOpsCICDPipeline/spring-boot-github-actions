@@ -30,7 +30,8 @@ jobs:
       - name: Install dependencies and Build 
         run: mvn clean install -DskipTests  
       - name: Output env Information
-        run: echo "SPRING_DATASOURCE_DATABASE_NAME -  ${{ env.SPRING_DATASOURCE_DATABASE_NAME }}"  
+        run: |
+            echo "SPRING_DATASOURCE_DATABASE_NAME:  ${{ env.SPRING_DATASOURCE_DATABASE_NAME }}"  
   test:  
     needs: compileAndbuild
     runs-on: ubuntu-latest
