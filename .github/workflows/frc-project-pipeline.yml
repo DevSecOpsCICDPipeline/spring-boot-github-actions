@@ -45,6 +45,9 @@ jobs:
               ${{ runner.os }}-maven-          
       - name: Test 
         run: mvn clean test -fn surefire-report:report  -Daggregate=true
+      - name: Output Test contents 
+        run: |
+          ls 
   build:
     needs: test
     runs-on: ubuntu-latest
@@ -69,7 +72,7 @@ jobs:
         run: mvn clean package -DskipTests  
       - name: Output contents 
         run: |
-          cd target/surefire-reports  
+          cd target
           ls        
       - name:  Publish jar filename
         id:    publish-jar
