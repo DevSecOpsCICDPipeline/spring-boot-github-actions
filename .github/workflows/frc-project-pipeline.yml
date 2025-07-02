@@ -44,7 +44,7 @@ jobs:
          restore-keys: |
               ${{ runner.os }}-maven-          
       - name: Test 
-        run: mvn test  
+        run: mvn clean test -fn surefire-report:report  -Daggregate=true
   build:
     needs: test
     runs-on: ubuntu-latest
@@ -69,7 +69,7 @@ jobs:
         run: mvn clean package -DskipTests  
       - name: Output contents 
         run: |
-          cd target  
+          cd target/surefire-reports  
           ls        
       - name:  Publish jar filename
         id:    publish-jar
