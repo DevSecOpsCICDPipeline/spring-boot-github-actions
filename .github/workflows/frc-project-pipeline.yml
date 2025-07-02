@@ -60,6 +60,12 @@ jobs:
         with:
          java-version: '17'
          distribution: 'adopt'
+      - name:  Get build artifacts
+        uses: actions/download-artifact@v4
+        with:
+         name: artifacts
+      - name: Output contents
+        run: ls   
       - name: Deploy
         run: echo "Deployee"        
 
