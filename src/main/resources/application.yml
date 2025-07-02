@@ -7,4 +7,5 @@ spring:
     name: spring boot testing
   data:
     mongodb:
-      uri: mongodb://localhost:27017/product-service
+      uri: mongodb://${SPRING_DATASOURCE_HOST_NAME}:${SPRING_DATASOURCE_PORT}/${SPRING_DATASOURCE_DATABASE_NAME}
+# //      uri: mongodb://localhost:27017/product-service      

@@ -3,6 +3,10 @@ on:
  push: 
     branches:
         - main
+env: 
+  SPRING_DATASOURCE_HOST_NAME: localhost   
+  SPRING_DATASOURCE_PORT: 27017
+  SPRING_DATASOURCE_DATABASE_NAME: product-service       
 jobs:
   compileAndbuild:
     runs-on: ubuntu-latest
