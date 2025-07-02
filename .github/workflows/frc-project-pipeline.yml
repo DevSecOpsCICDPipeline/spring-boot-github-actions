@@ -47,7 +47,7 @@ jobs:
         run: mvn clean test -fn surefire-report:report  -Daggregate=true
       - name: Output Test contents 
         run: |
-         cd target
+         cd target/surefire-reports
          ls 
   build:
     needs: test
