@@ -21,6 +21,8 @@ jobs:
   test:  
     needs: compileAndbuild
     runs-on: ubuntu-latest
+    outputs:
+        jar-file: ${{ steps.publish-jar.outputs.jar-file }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -44,6 +46,9 @@ jobs:
          distribution: 'adopt'
       - name: Package
         run: mvn clean package -DskipTests  
+      - name:  Publish jar filename
+        id:    publish-jar
+        run : find target/*.jar -type f -execdir echo 'jar-file={}' >> $GITHUB_OUTPUT ';'
       - name:  Upload artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -66,6 +71,8 @@ jobs:
          name: artifacts
       - name: Output contents
         run: ls   
+      - name:  Output filename
+        run: echo "${{ needs.build.outputs.jar-file }}"  
       - name: Deploy
         run: echo "Deployee"        
 
