@@ -47,7 +47,8 @@ jobs:
         run: mvn clean test -fn surefire-report:report  -Daggregate=true
       - name: Output Test contents 
         run: |
-          ls 
+         cd target
+         ls 
   build:
     needs: test
     runs-on: ubuntu-latest
