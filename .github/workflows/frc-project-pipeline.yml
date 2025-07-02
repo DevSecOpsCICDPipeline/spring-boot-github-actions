@@ -90,8 +90,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
          name: artifacts
-      - name: Output contents
-        run: ls   
+      - name: Output contents 
+        run: |
+          cd target  
+          ls
       - name:  Output filename
         run: echo "${{ needs.build.outputs.jar-file }}"  
       - name: Deploy
