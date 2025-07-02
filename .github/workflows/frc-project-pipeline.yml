@@ -9,6 +9,7 @@ env:
   SPRING_DATASOURCE_DATABASE_NAME: ${{ secrets.DATASOURCE_DATABASE_NAME }}   
 jobs:
   compileAndbuild:
+    environment: testing
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
