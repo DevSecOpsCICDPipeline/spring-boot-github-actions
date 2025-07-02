@@ -1,5 +1,8 @@
 name: Frc Project Pipeline
-on: [push,workflow_dispatch]
+on: 
+ push: 
+    branches:
+        - main
 jobs:
   compileAndbuild:
     runs-on: ubuntu-latest
