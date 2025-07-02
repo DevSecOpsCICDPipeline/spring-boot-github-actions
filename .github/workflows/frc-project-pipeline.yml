@@ -24,14 +24,14 @@ jobs:
       - name: Compile 
         run: mvn compile 
       - name: Install dependencies and Build 
-        run: mvn clean install
+        run: mvn clean install -DskipTests  
   test:  
     needs: compileAndbuild
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      - name: Install Java and Maven
+      - name: Install Java and Maven 
         uses: actions/setup-java@v4  
         with:
          java-version: '17'
@@ -67,6 +67,10 @@ jobs:
               ${{ runner.os }}-maven-          
       - name: Package
         run: mvn clean package -DskipTests  
+      - name: Output contents 
+        run: |
+          cd target  
+          ls        
       - name:  Publish jar filename
         id:    publish-jar
         run : find target/*.jar -type f -execdir echo 'jar-file={}' >> $GITHUB_OUTPUT ';'
@@ -92,7 +96,6 @@ jobs:
          name: artifacts
       - name: Output contents 
         run: |
-          cd target  
           ls
       - name:  Output filename
         run: echo "${{ needs.build.outputs.jar-file }}"  
