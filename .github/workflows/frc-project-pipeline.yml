@@ -32,17 +32,21 @@ jobs:
       - name: Install dependencies and Build 
         if: steps.cache.outputs.cache-hit != 'true'
         run: mvn clean install -DskipTests 
-      - name: Depcheck
-        uses: dependency-check/Dependency-Check_Action@main
-        id: Depcheck
+      - name: Run OWASP Dependency Check CLI
+        uses: dependency-check/Dependency-Check_Action@v4
         with:
-          project: 'test'
-          path: '.'
-          format: 'HTML'
-          out: 'reports' # this is the default, no need to specify unless you wish to override it
-          args: >
-            --failOnCVSS 7
-            --enableRetired         
+          project: "My Project"
+          scan: "./"                      # Adjust to your source folder
+          format: "HTML"
+          out: "reports"
+          failOnCvss: 7.0                 # Optional: Fail on CVSS >= 7
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dependency-check-html
+          path: reports/dependency-check-report.html        
       - name: Output env Information
         run: |
             echo "SPRING_DATASOURCE_DATABASE_NAME:  ${{ env.SPRING_DATASOURCE_DATABASE_NAME }}"  
