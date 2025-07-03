@@ -41,16 +41,12 @@ jobs:
         with:
           project: 'test'
           path: '.'
-          format: 'HTML'    
-      - name: Upload HTML report
-        if: always()
+          format: 'HTML'          
+      - name: Upload Test results
         uses: actions/upload-artifact@v4
         with:
-          name: dependency-check-html
-          path: reports/dependency-check-report.html        
-      - name: Output env Information
-        run: |
-            echo "SPRING_DATASOURCE_DATABASE_NAME:  ${{ env.SPRING_DATASOURCE_DATABASE_NAME }}"  
+           name: Depcheck report
+           path: ${{github.workspace}}/reports
   test:  
     needs: compileAndbuild
     runs-on: ubuntu-latest
