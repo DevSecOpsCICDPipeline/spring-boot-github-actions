@@ -20,6 +20,7 @@ jobs:
          java-version: '17'
          distribution: 'adopt'
       - name: Cache dependencies
+        id: cache
         uses: actions/cache@v4 
         with: 
          path: ~/.m2/repository  
@@ -29,6 +30,7 @@ jobs:
       - name: Compile 
         run: mvn compile 
       - name: Install dependencies and Build 
+        if: steps.cache.outputs.cache-hit != 'true'
         run: mvn clean install -DskipTests  
       - name: Output env Information
         run: |
