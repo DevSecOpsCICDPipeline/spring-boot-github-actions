@@ -32,10 +32,10 @@ jobs:
       - name: Install dependencies and Build 
         if: steps.cache.outputs.cache-hit != 'true'
         run: mvn clean install -DskipTests 
-      - name: Run OWASP Dependency Check CLI
-        uses: dependency-check/Dependency-Check_Action@v4
+      - name:  Run OWASP Dependency Check
+        uses: jeremylong/DependencyCheck@v7.4.0
         with:
-          project: "My Project"
+          project: "spring-boot-app"
           scan: "./"                      # Adjust to your source folder
           format: "HTML"
           out: "reports"
