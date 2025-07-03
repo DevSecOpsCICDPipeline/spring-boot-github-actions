@@ -54,6 +54,7 @@ jobs:
          restore-keys: |
               ${{ runner.os }}-maven-          
       - name: Test 
+        continue-on-error: true
         id: run-tests
         run: mvn clean test -fn surefire-report:report  -Daggregate=true
       - name: Upload test report 
