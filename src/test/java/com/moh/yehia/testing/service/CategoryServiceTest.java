@@ -58,7 +58,7 @@ class CategoryServiceTest {
         Category retrievedCategory = categoryService.findById("123456");
         // then or assertions
         Assertions.assertThat(retrievedCategory).isNotNull();
-        Assertions.assertThat(retrievedCategory.getId()).isEqualTo(category.getId());
+        Assertions.assertThat(retrievedCategory.getId()).isEqualTo("category.getId()");
         Assertions.assertThat(retrievedCategory.getName()).isEqualTo(category.getName());
         Assertions.assertThat(retrievedCategory.getDescription()).isEqualTo(category.getDescription());
     }

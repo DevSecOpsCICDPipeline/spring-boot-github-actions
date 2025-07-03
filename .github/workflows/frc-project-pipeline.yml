@@ -52,11 +52,14 @@ jobs:
          restore-keys: |
               ${{ runner.os }}-maven-          
       - name: Test 
+        id: run-tests
         run: mvn clean test -fn surefire-report:report  -Daggregate=true
-      - name: Output Test contents 
-        run: |
-         cd target/surefire-reports
-         ls 
+      - name: Upload test report 
+        if: failure() && ${{ steps.run-tests.outcome == 'failure' }}
+        uses: actions/upload-artifact@v4
+        with: 
+         name: test-report
+         path:  target/surefire-reports/*.xml  
   build:
     needs: test
     runs-on: ubuntu-latest
