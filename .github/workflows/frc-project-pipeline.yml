@@ -7,6 +7,7 @@ env:
   SPRING_DATASOURCE_HOST_NAME: localhost   
   SPRING_DATASOURCE_PORT: 27017
   SPRING_DATASOURCE_DATABASE_NAME: ${{ secrets.DATASOURCE_DATABASE_NAME }}   
+  JAVA_HOME: /opt/jdk
 jobs:
   compileAndbuild:
     environment: testing
