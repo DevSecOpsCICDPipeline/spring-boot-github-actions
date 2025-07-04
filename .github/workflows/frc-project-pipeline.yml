@@ -114,6 +114,8 @@ jobs:
     uses: ./.github/workflows/reusable.yml   
     with: 
       artifacts-name: artifacts 
+    secrets: 
+       database-name: ${{ secrets.DATASOURCE_DATABASE_NAME }}   
   report:
     runs-on: ubuntu-latest
     needs: [test,build]
