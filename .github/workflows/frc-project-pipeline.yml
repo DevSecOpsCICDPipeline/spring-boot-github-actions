@@ -50,6 +50,11 @@ jobs:
   test:  
     needs: compileAndbuild
     runs-on: ubuntu-latest
+    services:
+      mysql: 
+        image: mysql
+        env: 
+          MYSQL_ROOT_PASSWORD: adminadmin
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
