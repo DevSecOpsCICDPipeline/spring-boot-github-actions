@@ -78,6 +78,9 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    container: 
+      image: eclipse-temurin:17-jdk-alpine
+      # env:
     outputs:
         jar-file: ${{ steps.publish-jar.outputs.jar-file }}
     steps:
