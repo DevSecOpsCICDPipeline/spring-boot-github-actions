@@ -111,7 +111,9 @@ jobs:
             path: target/*.jar
   deploy:
     needs: build
-    uses: ./.github/workflows/reusable.yml    
+    uses: ./.github/workflows/reusable.yml   
+    with: 
+      artifacts-name: artifacts 
   report:
     runs-on: ubuntu-latest
     needs: [test,build]

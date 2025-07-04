@@ -5,14 +5,14 @@ on:
       artifacts-name: 
         description: Then name of the deployable artifacts files
         required: false
-        default: artifacts
+        default: artifacts-files
         type: string
 jobs:    
   deploy:
     runs-on: ubuntu-latest
     steps:
      - name: Dwonload artifacts 
-       uses: actions/download-artifact@v3
+       uses: actions/download-artifact@v4
        with:
          name: ${{ inputs.artifacts-name   }}
      - name: List files
